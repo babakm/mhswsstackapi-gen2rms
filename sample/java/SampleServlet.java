@@ -187,7 +187,7 @@ public class SampleServlet extends HttpServlet {
 	            
 	            final String payload = message.toString();
 	            
-	            connection.setRequestProperty("x-result-format", "XML");
+	            connection.setRequestProperty("x-result-format", "XML"); // do not set this HTTP header, I used it to test XML result format 
 	            connection.setRequestProperty("x-client-identifier", client_identifier);
 	            connection.setRequestProperty("x-retry-count", Integer.toString(retry_count));
 	            connection.setRequestProperty("x-payload-signature", MessageTokenUtil.computeMD5(client_secret_key + payload));
@@ -209,9 +209,9 @@ public class SampleServlet extends HttpServlet {
 		        
 		        reader.close();
 		        		        		        
-		        //final JSONObject result = new JSONObject(buffer.toString());
+		        //final JSONObject result = new JSONObject(buffer.toString()); // use this line and delete the next one
 		        
-		        final JSONObject result = XML.toJSONObject(buffer.toString());
+		        final JSONObject result = XML.toJSONObject(buffer.toString()); // delete this line; used to test the XML format
 		        
 		        final int status = result.getInt("status");
 		        		        
